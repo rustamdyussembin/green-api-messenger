@@ -10,7 +10,7 @@ export const Login: FC = () => {
   return (
     <Center mih="100dvh" p="md">
       <Card shadow="xs" p="xl">
-        <Title order={1} size="h4">
+        <Title order={1} size="h4" mb="xs">
           Для входа введите данные
         </Title>
 

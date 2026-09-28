@@ -30,7 +30,7 @@ export const LoginForm: FC<ILoginFormProps> = ({ onSubmit }) => {
       />
 
       <Group justify="flex-end" mt="md">
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Отправить</Button>
       </Group>
     </form>
   );
