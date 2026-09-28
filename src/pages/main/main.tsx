@@ -1,3 +1,11 @@
+import { Chats } from '@/widgets/chats';
+
 export const MainPage = () => {
-  return <div>Main</div>;
+  return (
+    <>
+      <title>Чат</title>
+      <meta name="description" content="Чат" />
+      <Chats />
+    </>
+  );
 };
