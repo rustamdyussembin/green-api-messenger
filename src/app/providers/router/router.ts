@@ -1,19 +1,23 @@
 import { createBrowserRouter } from 'react-router';
-
-import { Main } from '@/pages/main';
-
 import { routes } from '@/shared/constants';
-import { Login } from '@/pages/login';
-import { protectedLoader } from '../protected-loader/protected-loader';
+import { LoginPage } from '@/pages/login';
+import { MainPage } from '@/pages/main';
+import { checkAuthFx } from '../../model';
+import { createGuardLoader } from '@/shared/libs/guards';
+
+export const requireAuthLoader = createGuardLoader({
+  check: () => checkAuthFx(),
+  redirectTo: routes.login,
+});
 
 export const router = createBrowserRouter([
   {
     path: routes.login,
-    Component: Login,
+    Component: LoginPage,
   },
   {
-    loader: protectedLoader,
+    loader: requireAuthLoader,
     path: routes.main,
-    Component: Main,
+    Component: MainPage,
   },
 ]);
