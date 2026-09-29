@@ -12,7 +12,7 @@ $selectedContactId.on(selectContactId, (_, payload) => payload);
 export const $selectedContact = combine(
   { contacts: $contacts, selectedContactId: $selectedContactId },
   ({ contacts, selectedContactId }) => {
-    return contacts.find((contact) => contact.id === selectedContactId);
+    return contacts.find((contact) => contact.id === selectedContactId) ?? null;
   },
 );
 export const $hasSelectedContact = $selectedContact.map(Boolean);

@@ -1,4 +1,4 @@
-import { Button, Group, TextInput } from '@mantine/core';
+import { Button, Group, PasswordInput, TextInput } from '@mantine/core';
 import { isNotEmpty, useForm } from '@mantine/form';
 import { FIELD_REQUIRED_MESSAGE } from '@/shared/constants';
 import type { FC } from 'react';
@@ -22,14 +22,15 @@ export const LoginForm: FC<ILoginFormProps> = ({ onSubmit }) => {
     <form onSubmit={form.onSubmit(onSubmit)}>
       <TextInput withAsterisk label="ID Instance" key={form.key('idInstance')} {...form.getInputProps('idInstance')} />
 
-      <TextInput
+      <PasswordInput
+        mt="sm"
         withAsterisk
         label="Api Token Instance"
         key={form.key('apiTokenInstance')}
         {...form.getInputProps('apiTokenInstance')}
       />
 
-      <Group justify="flex-end" mt="md">
+      <Group justify="flex-end" mt="lg">
         <Button type="submit">Отправить</Button>
       </Group>
     </form>

@@ -12,7 +12,6 @@ export const AddMessage: FC<IAddMessageProps> = ({ onSubmit }) => {
     },
   });
   const message = form.useWatchValue('message');
-  console.log('message', message);
 
   return (
     <form onSubmit={form.onSubmit(onSubmit)}>

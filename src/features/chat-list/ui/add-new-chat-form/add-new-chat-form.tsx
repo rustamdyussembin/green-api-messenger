@@ -27,7 +27,7 @@ export const AddNewChatForm: FC<IAddNewChatFormProps> = ({ onSubmit }) => {
       />
 
       <Group justify="flex-end" mt="md">
-        <Button type="submit">Отправить</Button>
+        <Button type="submit">Добавить</Button>
       </Group>
     </form>
   );
