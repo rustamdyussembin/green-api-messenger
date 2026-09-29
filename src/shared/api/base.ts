@@ -1,6 +1,4 @@
-const BASE_URL = 'https://4100.api.green-api.com';
-
-type QueryParams = Record<string, string | number | boolean | null | undefined>;
+const BASE_URL = 'https://7201.api.green-api.com';
 
 // TODO: добавить токен
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
@@ -23,24 +21,7 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   return response.json() as Promise<T>;
 }
 
-export function get<T>(endpoint: string, params: QueryParams = {}): Promise<T> {
-  const searchParams = new URLSearchParams();
-
-  Object.entries(params).forEach(([key, value]) => {
-    if (value !== null && value !== undefined) {
-      searchParams.append(key, String(value));
-    }
-  });
-
-  const query = searchParams.toString();
-  const url = query ? `${endpoint}?${query}` : endpoint;
-
-  return request<T>(url, {
-    method: 'GET',
-  });
-}
-
-export function post<T>(endpoint: string, data: unknown): Promise<T> {
+export function post<T>(endpoint: string, data?: unknown): Promise<T> {
   return request<T>(endpoint, {
     method: 'POST',
     body: JSON.stringify(data),

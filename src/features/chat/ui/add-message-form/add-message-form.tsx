@@ -1,11 +1,11 @@
 import type { FC } from 'react';
-import type { IAddMessageProps, IChatForm } from './add-message.types';
 import { useForm } from '@mantine/form';
 import { ActionIcon, TextInput } from '@mantine/core';
 import { Send } from 'lucide-react';
+import type { IAddMessageForm, IAddMessageFormProps } from './add-message-form.types';
 
-export const AddMessage: FC<IAddMessageProps> = ({ onSubmit }) => {
-  const form = useForm<IChatForm>({
+export const AddMessageForm: FC<IAddMessageFormProps> = ({ pending, onSubmit }) => {
+  const form = useForm<IAddMessageForm>({
     mode: 'uncontrolled',
     initialValues: {
       message: '',
@@ -22,7 +22,15 @@ export const AddMessage: FC<IAddMessageProps> = ({ onSubmit }) => {
         {...form.getInputProps('message')}
         rightSectionWidth={48}
         rightSection={
-          <ActionIcon size="md" radius="xl" variant="filled" aria-label="Отправить" disabled={!message}>
+          <ActionIcon
+            type="submit"
+            size="md"
+            radius="xl"
+            variant="filled"
+            aria-label="Отправить"
+            disabled={!message}
+            loading={pending}
+          >
             <Send size={14} />
           </ActionIcon>
         }

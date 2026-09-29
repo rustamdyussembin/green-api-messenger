@@ -1,1 +1,1 @@
-export { get, post } from './base.ts';
+export { post } from './base.ts';
