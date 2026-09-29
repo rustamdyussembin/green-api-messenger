@@ -1,7 +1,6 @@
-export interface ISendTextMessageParamsDto {
-  idInstance: string;
-  apiTokenInstance: string;
-  chatId: string;
+import type { ICredentialsDto } from './credentials';
+
+export interface ISendTextMessageParamsDto extends ICredentialsDto {
   message: string;
   typingTime?: number;
   quotedMessageId?: string;

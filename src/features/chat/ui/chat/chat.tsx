@@ -13,7 +13,7 @@ export const Chat: FC = () => {
   return (
     <Flex direction="column" flex={1} mih={0} p="md">
       <Box flex={1} mih={0}>
-        Сообщения {selectedContact?.phone}
+        Сообщения {selectedContact?.phoneNumber}
       </Box>
       <Box w="100%" maw={700} mx="auto">
         <AddMessageForm pending={pending} onSubmit={onSendMessage} />

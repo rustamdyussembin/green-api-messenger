@@ -1,5 +1,5 @@
 export interface IContact {
-  id: number;
-  phone: string;
+  phoneNumber: string;
+  chatId: string;
   avatarSrc?: string;
 }

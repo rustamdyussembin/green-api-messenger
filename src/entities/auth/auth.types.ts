@@ -1,4 +1,3 @@
-export interface ILogin {
-  idInstance: string;
-  apiTokenInstance: string;
-}
+import type { ICredentialsDto } from '@/shared/api-types';
+
+export type ILogin = ICredentialsDto;
