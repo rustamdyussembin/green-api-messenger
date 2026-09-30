@@ -4,7 +4,7 @@ import { isNotEmpty, useForm } from '@mantine/form';
 import { FIELD_REQUIRED_MESSAGE, PHONE_MASK } from '@/shared/constants';
 import { Button, Group, MaskInput } from '@mantine/core';
 
-export const AddNewChatForm: FC<IAddNewChatFormProps> = ({ onSubmit }) => {
+export const AddNewChatForm: FC<IAddNewChatFormProps> = ({ pending, onSubmit }) => {
   const form = useForm<IAddNewChatForm>({
     mode: 'uncontrolled',
     initialValues: {
@@ -27,7 +27,9 @@ export const AddNewChatForm: FC<IAddNewChatFormProps> = ({ onSubmit }) => {
       />
 
       <Group justify="flex-end" mt="md">
-        <Button type="submit">Добавить</Button>
+        <Button type="submit" disabled={pending} loading={pending}>
+          Добавить
+        </Button>
       </Group>
     </form>
   );

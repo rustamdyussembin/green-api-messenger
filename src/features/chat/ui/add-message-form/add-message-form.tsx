@@ -13,8 +13,14 @@ export const AddMessageForm: FC<IAddMessageFormProps> = ({ pending, onSubmit }) 
   });
   const message = form.useWatchValue('message');
 
+  const handleSubmit = (values: IAddMessageForm) => {
+    onSubmit(values);
+
+    form.reset();
+  };
+
   return (
-    <form onSubmit={form.onSubmit(onSubmit)}>
+    <form onSubmit={form.onSubmit(handleSubmit)}>
       <TextInput
         radius="xl"
         size="md"
@@ -28,7 +34,7 @@ export const AddMessageForm: FC<IAddMessageFormProps> = ({ pending, onSubmit }) 
             radius="xl"
             variant="filled"
             aria-label="Отправить"
-            disabled={!message}
+            disabled={!message || pending}
             loading={pending}
           >
             <Send size={14} />

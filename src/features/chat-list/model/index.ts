@@ -30,7 +30,7 @@ sample({
   clock: checkWhatsappFx.doneData,
   source: $contacts,
   fn: (contacts, newContact): IContact[] => [
-    { phoneNumber: getPhoneNumber(newContact.phoneNumber), chatId: newContact.chatId },
+    { phoneNumber: getPhoneNumber(newContact.phoneNumber), chatId: newContact.phoneNumber },
     ...contacts,
   ],
   target: [setContacts, closeAddNewChatModal],

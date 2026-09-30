@@ -1,20 +1,22 @@
-import type { FC } from 'react';
+import { useEffect, type FC } from 'react';
 import { Box, Flex } from '@mantine/core';
 import { useUnit } from 'effector-react';
-import { $selectedContact } from '@/entities/contact';
 import { AddMessageForm } from '../add-message-form/add-message-form';
-import { sendTextMessage, sendTextMessageFx } from '../../model';
+import { sendTextMessage, sendTextMessageFx, startReceiving } from '../../model';
+import { ChatMessages } from '../chat-messages/chat-messages';
 
 export const Chat: FC = () => {
-  const selectedContact = useUnit($selectedContact);
   const onSendMessage = useUnit(sendTextMessage);
   const pending = useUnit(sendTextMessageFx.pending);
+  const onStartReceiving = useUnit(startReceiving);
+
+  useEffect(() => {
+    onStartReceiving();
+  }, []);
 
   return (
     <Flex direction="column" flex={1} mih={0} p="md">
-      <Box flex={1} mih={0}>
-        Сообщения {selectedContact?.phoneNumber}
-      </Box>
+      <ChatMessages />
       <Box w="100%" maw={700} mx="auto">
         <AddMessageForm pending={pending} onSubmit={onSendMessage} />
       </Box>

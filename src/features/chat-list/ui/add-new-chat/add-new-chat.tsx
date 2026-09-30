@@ -3,10 +3,17 @@ import type { FC } from 'react';
 import { Pencil } from 'lucide-react';
 import { AddNewChatForm } from '../add-new-chat-form/add-new-chat-form';
 import { useUnit } from 'effector-react';
-import { $isAddNewChatModal, addNewContact, closeAddNewChatModal, openAddNewChatModal } from '../../model';
+import {
+  $isAddNewChatModal,
+  addNewContact,
+  checkWhatsappFx,
+  closeAddNewChatModal,
+  openAddNewChatModal,
+} from '../../model';
 
 export const AddNewChat: FC = () => {
   const onAddNewContact = useUnit(addNewContact);
+  const pending = useUnit(checkWhatsappFx.pending);
   const [opened, open, close] = useUnit([$isAddNewChatModal, openAddNewChatModal, closeAddNewChatModal]);
 
   return (
@@ -25,7 +32,7 @@ export const AddNewChat: FC = () => {
       </ActionIcon>
 
       <Modal opened={opened} onClose={close} title="Добавьте контакт">
-        <AddNewChatForm onSubmit={onAddNewContact} />
+        <AddNewChatForm pending={pending} onSubmit={onAddNewContact} />
       </Modal>
     </>
   );

@@ -1,6 +1,6 @@
 import { createEffect } from 'effector';
 import { sendTextMessage } from '../send-message.api';
-import type { ISendTextMessageParams } from '../send-message.types';
+import type { ISendTextMessage, ISendTextMessageParams } from '../send-message.types';
 
-export const sendTextMessageBaseFx = createEffect<ISendTextMessageParams, any>();
+export const sendTextMessageBaseFx = createEffect<ISendTextMessageParams, ISendTextMessage>();
 sendTextMessageBaseFx.use(sendTextMessage);
