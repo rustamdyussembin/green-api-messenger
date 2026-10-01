@@ -1,75 +1,132 @@
-# React + TypeScript + Vite
+# Green API Messenger
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Небольшое SPA-приложение для отправки и получения сообщений через GREEN-API.
 
-Currently, two official plugins are available:
+## Функциональность
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- авторизация с помощью `idInstance` и `apiTokenInstance`;
+- отправка текстовых сообщений;
+- получение входящих сообщений;
+- защищённый маршрут основного экрана.
 
-## React Compiler
+## Стек
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- Effector
+- React Router
+- Mantine
+- Feature-Sliced Design
 
-## Expanding the ESLint configuration
+## Локальный запуск
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Требования
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Для запуска проекта необходимы:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js 24+
+- Yarn
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Установка зависимостей
 
+Клонируйте репозиторий:
+
+```bash
+git clone <repository-url>
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Перейдите в директорию проекта:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+cd green-api-messenger
 ```
+
+Установите зависимости:
+
+```bash
+yarn install
+```
+
+### Запуск проекта
+
+```bash
+yarn dev
+```
+
+После запуска приложение будет доступно по адресу:
+
+```text
+http://localhost:5173
+```
+
+## Данные для авторизации
+
+Для работы приложения необходимы:
+
+- `idInstance`;
+- `apiTokenInstance`.
+
+Получить их можно в личном кабинете GREEN-API.
+
+## Доступные команды
+
+Запуск проекта в режиме разработки:
+
+```bash
+yarn dev
+```
+
+Проверка TypeScript:
+
+```bash
+yarn typecheck
+```
+
+Сборка production-версии:
+
+```bash
+yarn build
+```
+
+Локальный просмотр production-сборки:
+
+```bash
+yarn preview
+```
+
+## Архитектура
+
+Проект организован в соответствии с методологией Feature-Sliced Design.
+
+Основные слои:
+
+```text
+src/
+├── app/
+├── pages/
+├── widgets/
+├── features/
+├── entities/
+└── shared/
+```
+
+## Production
+
+Собрать приложение:
+
+```bash
+yarn build
+```
+
+Результат сборки будет находиться в директории:
+
+```text
+dist/
+```
+
+## Demo
+
+Демо-версия приложения:
+
+[Открыть приложение](<demo-url>)
