@@ -11,7 +11,6 @@ export const LoginForm: FC<ILoginFormProps> = ({ onSubmit }) => {
       idInstance: '',
       apiTokenInstance: '',
     },
-
     validate: {
       idInstance: isNotEmpty(FIELD_REQUIRED_MESSAGE),
       apiTokenInstance: isNotEmpty(FIELD_REQUIRED_MESSAGE),

@@ -1,7 +1,7 @@
 import { attach, createEvent, createStore, sample } from 'effector';
 import type { IAddNewChat } from '../chat-list.types';
 import { $contacts, type IContact, setContacts } from '@/entities/contact';
-import { $loginData } from '@/entities/auth';
+import { $credentials } from '@/entities/auth';
 import { checkWhatsappBaseFx, type ICheckWhatsappParams } from '@/entities/check-messenger';
 import { getChatId, getPhoneNumber } from '@/shared/libs/phone';
 
@@ -17,10 +17,10 @@ export const addNewContact = createEvent<IAddNewChat>();
 
 sample({
   clock: addNewContact,
-  source: $loginData,
+  source: $credentials,
   filter: Boolean,
-  fn: (loginData, { phoneNumber }): ICheckWhatsappParams => ({
-    ...loginData,
+  fn: (credentials, { phoneNumber }): ICheckWhatsappParams => ({
+    ...credentials,
     chatId: getChatId(phoneNumber),
   }),
   target: checkWhatsappFx,

@@ -2,10 +2,10 @@ import type { FC } from 'react';
 import { useForm } from '@mantine/form';
 import { ActionIcon, TextInput } from '@mantine/core';
 import { Send } from 'lucide-react';
-import type { IAddMessageForm, IAddMessageFormProps } from './add-message-form.types';
+import type { IMessageForm, IMessageFormProps } from './message-form.types';
 
-export const AddMessageForm: FC<IAddMessageFormProps> = ({ pending, onSubmit }) => {
-  const form = useForm<IAddMessageForm>({
+export const MessageForm: FC<IMessageFormProps> = ({ pending, onSubmit }) => {
+  const form = useForm<IMessageForm>({
     mode: 'uncontrolled',
     initialValues: {
       message: '',
@@ -13,7 +13,7 @@ export const AddMessageForm: FC<IAddMessageFormProps> = ({ pending, onSubmit }) 
   });
   const message = form.useWatchValue('message');
 
-  const handleSubmit = (values: IAddMessageForm) => {
+  const handleSubmit = (values: IMessageForm) => {
     onSubmit(values);
 
     form.reset();

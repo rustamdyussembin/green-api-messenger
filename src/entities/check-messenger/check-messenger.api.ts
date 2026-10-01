@@ -7,7 +7,7 @@ export const CHECK_WHATSAPP_API_URL = (idInstance: string, apiTokenInstance: str
 export async function checkWhatsapp({
   idInstance,
   apiTokenInstance,
-  ...rest
+  ...data
 }: ICheckWhatsappParamsDto): Promise<ICheckWhatsappDto> {
-  return post(CHECK_WHATSAPP_API_URL(idInstance, apiTokenInstance), rest);
+  return post(CHECK_WHATSAPP_API_URL(idInstance, apiTokenInstance), data);
 }

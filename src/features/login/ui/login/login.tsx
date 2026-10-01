@@ -2,10 +2,10 @@ import type { FC } from 'react';
 import { Card, Center, Title } from '@mantine/core';
 import { LoginForm } from '../login-form/login-form';
 import { useUnit } from 'effector-react';
-import { startSetLoginData } from '@/entities/auth';
+import { submitCredentials } from '@/entities/auth';
 
 export const Login: FC = () => {
-  const onSubmit = useUnit(startSetLoginData);
+  const onSubmit = useUnit(submitCredentials);
 
   return (
     <Center mih="100dvh" p="md">

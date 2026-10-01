@@ -1,3 +1,5 @@
+import type { QueryParams } from '@/shared/types';
+
 const BASE_URL = 'https://7201.api.green-api.com';
 
 async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
@@ -19,8 +21,6 @@ async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
 
   return response.json() as Promise<T>;
 }
-
-type QueryParams = Record<string, string | number | boolean | null | undefined>;
 
 export function get<T>(url: string, params: QueryParams = {}): Promise<T> {
   const searchParams = new URLSearchParams();

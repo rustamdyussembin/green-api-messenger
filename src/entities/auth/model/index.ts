@@ -1,25 +1,27 @@
-import { createEvent, createStore, sample } from 'effector';
-import type { ILogin } from '../auth.types';
+import { attach, createEvent, createStore, sample } from 'effector';
 import type { INavigateParams } from '@/shared/types';
 import { routes } from '@/shared/constants';
-import { navigateRequested } from '@/shared/libs/navigation';
+import { goToPage } from '@/shared/libs/navigation';
+import type { ICredentialsDto } from '@/shared/api-types';
 
-export const $loginData = createStore<null | ILogin>(null);
-export const setLoginData = createEvent<ILogin>();
-export const startSetLoginData = createEvent<ILogin>();
-$loginData.on(setLoginData, (_, payload) => payload);
-export const $hasLoginData = $loginData.map(Boolean);
+export const $credentials = createStore<null | ICredentialsDto>(null);
+export const setCredentials = createEvent<ICredentialsDto>();
+export const submitCredentials = createEvent<ICredentialsDto>();
+$credentials.on(setCredentials, (_, payload) => payload);
+export const $hasCredentials = $credentials.map(Boolean);
 
 sample({
-  clock: startSetLoginData,
-  target: setLoginData,
+  clock: submitCredentials,
+  target: setCredentials,
 });
 
 sample({
-  clock: startSetLoginData,
+  clock: submitCredentials,
   fn: (): INavigateParams => ({
     path: routes.main,
     replace: true,
   }),
-  target: navigateRequested,
+  target: goToPage,
 });
+
+export const checkAuthFx = attach({ source: $hasCredentials, effect: (isAuthenticated) => isAuthenticated });

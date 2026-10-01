@@ -7,7 +7,7 @@ export const SEND_TEXT_MESSAGE_API_URL = (idInstance: string, apiTokenInstance: 
 export async function sendTextMessage({
   idInstance,
   apiTokenInstance,
-  ...rest
+  ...data
 }: ISendTextMessageParamsDto): Promise<ISendTextMessageDto> {
-  return post(SEND_TEXT_MESSAGE_API_URL(idInstance, apiTokenInstance), rest);
+  return post(SEND_TEXT_MESSAGE_API_URL(idInstance, apiTokenInstance), data);
 }

@@ -1,11 +1,11 @@
 import { attach, createStore, createEvent, createEffect, sample } from 'effector';
 
 import { sendTextMessageBaseFx } from '@/entities/send-message';
-import { $loginData, type ILogin } from '@/entities/auth';
-import type { IChat, IMessage } from '../chat.types';
+import type { ISendMessage, IMessage } from '../chat-window.types';
 import { $selectedContact, type IContact } from '@/entities/contact';
 import { deleteNotificationBaseFx, receiveNotificationBaseFx } from '@/entities/notification';
 import type { ICredentialsDto } from '@/shared/api-types';
+import { $credentials } from '@/entities/auth';
 
 export const $messages = createStore<IMessage[]>([]);
 export const messageAdded = createEvent<IMessage>();
@@ -19,21 +19,21 @@ $messages.on(messageAdded, (messages, message) => {
 
 export const sendTextMessageFx = attach({ effect: sendTextMessageBaseFx });
 
-export const sendTextMessage = createEvent<IChat>();
+export const sendTextMessage = createEvent<ISendMessage>();
 
 sample({
   clock: sendTextMessage,
-  source: { loginData: $loginData, selectedContact: $selectedContact },
+  source: { credentials: $credentials, selectedContact: $selectedContact },
   filter: (sources: {
-    loginData: null | ILogin;
+    credentials: null | ICredentialsDto;
     selectedContact: IContact | null;
-  }): sources is { loginData: ILogin; selectedContact: IContact } =>
-    Boolean(sources.loginData) && Boolean(sources.selectedContact),
-  fn: ({ loginData, selectedContact }, { message }) => ({
+  }): sources is { credentials: ICredentialsDto; selectedContact: IContact } =>
+    Boolean(sources.credentials) && Boolean(sources.selectedContact),
+  fn: ({ credentials, selectedContact }, { message }) => ({
     chatId: selectedContact.chatId,
     message,
-    idInstance: loginData.idInstance,
-    apiTokenInstance: loginData.apiTokenInstance,
+    idInstance: credentials.idInstance,
+    apiTokenInstance: credentials.apiTokenInstance,
   }),
   target: sendTextMessageFx,
 });
@@ -85,7 +85,7 @@ pollOnceFx.use(async (credentials) => {
 
 sample({
   clock: startReceiving,
-  source: $loginData,
+  source: $credentials,
   filter: Boolean,
   target: pollOnceFx,
 });
@@ -98,7 +98,7 @@ sample({
 
 sample({
   clock: pollOnceFx.doneData,
-  source: $loginData,
+  source: $credentials,
   filter: Boolean,
   target: pollOnceFx,
 });

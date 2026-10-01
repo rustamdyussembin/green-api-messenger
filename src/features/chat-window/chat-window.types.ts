@@ -1,4 +1,4 @@
-export interface IChat {
+export interface ISendMessage {
   message: string;
 }
 

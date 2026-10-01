@@ -1,7 +1,7 @@
-import type { ILogin } from '@/entities/auth/auth.types';
+import type { ICredentialsDto } from '@/shared/api-types';
 
 export interface ILoginFormProps {
-  onSubmit: (data: ILogin) => void;
+  onSubmit: (data: ICredentialsDto) => void;
 }
 
-export type ILoginForm = ILogin;
+export type ILoginForm = ICredentialsDto;
