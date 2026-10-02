@@ -129,4 +129,4 @@ dist/
 
 Демо-версия приложения:
 
-[Открыть приложение](<demo-url>)
+[Открыть приложение](https://green-api-messenger-umber.vercel.app/login)
